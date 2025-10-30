@@ -9,54 +9,45 @@
 </head>
 <body>
     <header class="header">
-        <a href="./index.html" class="logo">SNKRHEAD</a>
-        <nav class="navbar">
-            <a href="#about-us">About</a>
-            <a href="./help.php">Help</a>
-            <a href="./prodcts.php">Products</a>
-            <a href="./login.php">Login</a>
-        </nav>
-    </header>
+  <a href="./index.html" class="logo">RabaNet</a>
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <a href="#about-us">¿Quienes somos?</a>
+    <a href="./help.php">Ayuda</a>
+    <a href="./prodcts.php">Servicios</a>
+    <a href="./login.php">Iniciar Sesión</a>
+  </nav>
+</header>
     <section class="hero">
         <div class="hero-content">
-          <h1>Welcome</h1>
-          <p>The best SNKRS, the best prices. All in one place!</p>
+          <h1>RabaNet</h1>
+          <p>Soluciones inteligentes para un campo más eficiente.</p>
         </div>
       </section>
       <section class="about">
         <div class="about-content">
-          <h1 id="about-us">About us</h1>
-          <div class="card-container">
-            <div class="card">
-                <i class="fa-regular fa-shield-check" style="font-size: 100px; padding: 20px; color: aliceblue;"></i>
-                <div class="card-content">
-                    <h3>Secure</h3>
-                    <p>Preserving the integrity of our marketplace means staying a step ahead. Our security and fraud systems, powered by our world class partners, have your personal information covered 24/7.</p>
-                </div>
-            </div>
-            <div class="card">
-                <i class="fa-regular fa-badge-check" style="font-size: 100px; padding: 20px; color: aliceblue;"></i>
-                <div class="card-content">
-                    <h3>Legit</h3>
-                    <p>Every item sold goes through our proprietary multi-step verification process with our team of verification experts.</p>
-                </div>
-            </div>
-            <div class="card">
-                <i class="fa-regular fa-money-bill" style="font-size: 100px; padding: 20px; color: aliceblue;"></i>
-                <div class="card-content">
-                    <h3>Transparent Pricing</h3>
-                    <p>Our real-time marketplace works just like the stock market. allowing you to buy and sell the most coveted items at their true market price.</p>
-                </div>
-            </div>
-          </div>
-    </div>
-</section>
-    <section class="register">
-        <div class="register-content">
-          <h1>¡JOIN US!</h1>
-          <p>Join the Best SNKRS Community in the World!</p>
-          <a href="./register.html">Register</a>
         </div>
-      </section>
+    </section>
+        <section class="register">
+            <div class="register-content">
+            <h1>¡JOIN US!</h1>
+            <p>Join the Best SNKRS Community in the World!</p>
+            <a href="./register.html">Register</a>
+            </div>
+        </section>
+      <script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navbar = document.getElementById('navbar');
+
+  menuToggle.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+    // Cambiar el ícono cuando se abre/cierra
+    menuToggle.querySelector('i').classList.toggle('fa-bars');
+    menuToggle.querySelector('i').classList.toggle('fa-xmark');
+  });
+</script>
 </body>
 </html>

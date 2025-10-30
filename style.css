@@ -7,6 +7,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
     background-color: #344251;
@@ -66,7 +70,7 @@ body {
     height: 100vh;
     background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('https://wallpapers.com/images/high/mutual-fund-in-sneakers-n0qxfiu76hmlwl27.webp');
+    url('Images/LandingPage/Backgrounds/Hero2.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -82,7 +86,7 @@ body {
 }
 
 .hero h1 {
-    font-size: 3em;
+    font-size: 6em;
     margin-bottom: 10px;
 }
 
@@ -361,4 +365,55 @@ body {
 
 .form button:hover {
     background-color: #2a3845;
+}
+/* ====== MENÚ HAMBURGUESA ====== */
+
+/* Oculta el ícono en pantallas grandes */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 📱 En móviles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  /* Mostrar botón hamburguesa */
+  .menu-toggle {
+    display: block;
+    z-index: 200;
+  }
+
+  /* Navbar inicialmente oculta */
+  .navbar {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 70%;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 30px;
+    padding-top: 50px;
+    transition: right 0.3s ease;
+  }
+
+  /* Cuando esté activa */
+  .navbar.active {
+    right: 0;
+  }
+
+  .navbar a {
+    font-size: 20px;
+    color: #fff;
+    margin: 0;
+  }
 }

@@ -1,53 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNKRHEAD</title>
+    <title>RabaNet: Home</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
 </head>
-<body>
-    <header class="header">
-  <a href="./index.html" class="logo">RabaNet</a>
-  <div class="menu-toggle" id="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-  </div>
 
-  <nav class="navbar" id="navbar">
-    <a href="#about-us">¿Quienes somos?</a>
-    <a href="./help.php">Ayuda</a>
-    <a href="./prodcts.php">Servicios</a>
-    <a href="./login.php">Iniciar Sesión</a>
-  </nav>
-</header>
-    <section class="hero">
-        <div class="hero-content">
-          <h1>RabaNet</h1>
-          <p>Soluciones inteligentes para un campo más eficiente.</p>
-        </div>
-      </section>
-      <section class="about">
-        <div class="about-content">
-        </div>
-    </section>
-        <section class="register">
-            <div class="register-content">
-            <h1>¡JOIN US!</h1>
-            <p>Join the Best SNKRS Community in the World!</p>
-            <a href="./register.html">Register</a>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="login.html">Iniciar Sesión</a></li>
+                <li class="logo">RabaNet</li>
+                <li><a href="#about">Sobre Nosotros</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>RabaNet</h1>
+                <p>Soluciones inteligentes para un campo eficiente.</p>
             </div>
         </section>
-      <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const navbar = document.getElementById('navbar');
-
-  menuToggle.addEventListener('click', () => {
-    navbar.classList.toggle('active');
-    // Cambiar el ícono cuando se abre/cierra
-    menuToggle.querySelector('i').classList.toggle('fa-bars');
-    menuToggle.querySelector('i').classList.toggle('fa-xmark');
-  });
-</script>
+    </main>
+    <footer>
+        <p>&copy; 2025 RabaNet</p>
+    </footer>
 </body>
+
 </html>

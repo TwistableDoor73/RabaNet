@@ -211,9 +211,11 @@ html {
 
 .CTA-image-container img {
     width: 100%;
-    max-width: 1000px;
+    max-width: 100%;
+    /* Allow full width */
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
+    /* Ensure it covers the space if needed, or contain if aspect ratio is key. 'cover' is better for 'whole space' usually, but 'contain' prevents cropping. Given the sketch, let's stick to width 100% and auto height. */
     display: block;
 }
 
@@ -285,7 +287,6 @@ html {
     .CTA {
         min-height: auto;
         padding: 60px 20px 0;
-        /* No bottom padding because image is there */
     }
 
     .CTA-content h2 {
@@ -300,4 +301,117 @@ html {
         font-size: 18px;
         padding: 10px 30px;
     }
+}
+
+/* --- LOGIN --- */
+
+.login-body {
+    background-color: #2F4F3A;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 20px solid #D9D9D9;
+}
+
+.login-header {
+    width: 100%;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.login-header h1 {
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: #D9D9D9;
+    padding: 40px 60px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-icon {
+    font-size: 80px;
+    color: #2F4F3A;
+    margin-bottom: 10px;
+}
+
+.login-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    background-color: #E6E6E6;
+    border: 1px solid #999;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.login-btn {
+    background-color: #2F4F3A;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: opacity 0.3s;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+.login-footer {
+    padding-bottom: 20px;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.error-message {
+    color: #D8000C;
+    background-color: #FFBABA;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
 }

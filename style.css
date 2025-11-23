@@ -216,3 +216,88 @@ html {
     object-fit: contain;
     display: block;
 }
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 768px) {
+
+    /* Navbar */
+    .navbar {
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        /* Add background for readability on mobile */
+    }
+
+    .nav-links {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .nav-links .logo {
+        order: -1;
+        /* Keep logo at top */
+        font-size: 32px;
+    }
+
+    /* Hero */
+    .hero {
+        padding-left: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    /* About */
+    .about {
+        height: auto;
+        padding: 60px 20px;
+        flex-direction: column;
+    }
+
+    .about-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        font-size: 48px;
+    }
+
+    .about-text p {
+        font-size: 18px;
+    }
+
+    .about-image {
+        order: -1;
+        /* Image on top? Or keep text on top. Let's keep text on top for now, or maybe image. Design choice. Let's stick to flow. */
+        order: 1;
+    }
+
+    /* CTA */
+    .CTA {
+        min-height: auto;
+        padding: 60px 20px 0;
+        /* No bottom padding because image is there */
+    }
+
+    .CTA-content h2 {
+        font-size: 48px;
+    }
+
+    .CTA-content p {
+        font-size: 18px;
+    }
+
+    .cta-button {
+        font-size: 18px;
+        padding: 10px 30px;
+    }
+}

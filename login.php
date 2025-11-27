@@ -85,6 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+
+    <footer class="login-footer">
+        <p>&copy; 2025 RabaNet</p>
+    </footer>
 </body>
 
 </html>

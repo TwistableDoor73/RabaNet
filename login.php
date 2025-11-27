@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="login-body">
     <div class="login-header">
-        <h1>RabaNet</h1>
+        <h1><a href="#about">RabaNet</a></h1>
     </div>
 
     <div class="login-container">

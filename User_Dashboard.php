@@ -80,8 +80,8 @@ $mysqli->close();
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <li><a href="#" class="active">Monitoreo</a></li>
-                <li><a href="#">Configuracion</a></li>
+                <li><a href="User_Dashboard.php" class="active">Monitoreo</a></li>
+                <li><a href="User_Configuration.php">Configuracion</a></li>
             </ul>
         </nav>
     </aside>

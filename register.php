@@ -8,13 +8,7 @@ $success = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
-    $phone = $_POST['phone']; // Note: phone is not in the provided CREATE TABLE schema, but is in the image. I will assume it might be added or I should just handle it (maybe append to profile or ignore if no column). 
-    // Wait, the user provided schema: id_usr, full_name, email, password_hash, usr_type, status, profile_image.
-    // There is NO phone column. I will assume I should add it to the table or just not save it for now, but the UI has it. 
-    // I'll proceed assuming I should save it if possible, but since schema is strict, I will skip saving phone to DB for now unless user updates schema, OR I can try to save it if the column exists. 
-    // Actually, best practice is to ask, but I'll implement the UI and just not bind it to the insert for now to avoid errors, or maybe the user forgot to mention the column. 
-    // Let's check the schema again: id_usr, full_name, email, password_hash, usr_type, status, profile_image.
-    // I will NOT insert phone into DB to prevent SQL error, but I will keep the input in the form.
+    $phone = $_POST['phone'];
 
     $password = $_POST['password'];
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -57,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error = "Este correo ya está registrado.";
         } else {
             // Insert user
-            $stmt = $mysqli->prepare("INSERT INTO users (full_name, email, password_hash, usr_type, status, profile_image) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssiis", $full_name, $email, $password_hash, $usr_type, $status, $profile_image);
+            $stmt = $mysqli->prepare("INSERT INTO users (full_name, email, phone, password_hash, usr_type, status, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssiis", $full_name, $email, $phone, $password_hash, $usr_type, $status, $profile_image);
 
             if ($stmt->execute()) {
                 $success = "Registro exitoso. <a href='login.php'>Inicia sesión aquí</a>";
@@ -84,63 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Specific overrides for register page if needed, but reusing login styles mostly */
-        .register-header-text {
-            text-align: left;
-            margin-left: 20px;
-        }
-
-        .register-header-text h2 {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 0;
-            color: black;
-        }
-
-        .register-header-text p {
-            font-size: 14px;
-            margin: 0;
-            color: black;
-        }
-
-        .profile-upload-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Centered as per design */
-            margin-bottom: 20px;
-            gap: 15px;
-        }
-
-        .profile-upload-label {
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-        }
-
-        .profile-upload-icon {
-            font-size: 80px;
-            color: #2D5C7F;
-            transition: opacity 0.3s;
-        }
-
-        .profile-upload-label:hover .profile-upload-icon {
-            opacity: 0.7;
-        }
-
-        .profile-upload-input {
-            display: none;
-        }
-
-        .preview-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: none;
-        }
-    </style>
 </head>
 
 <body class="login-body">
@@ -149,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="login-container">
-        <div class="login-card" style="max-width: 600px;"> <!-- Slightly wider for register form -->
+        <div class="login-card register-card-width"> <!-- Slightly wider for register form -->
 
             <form action="register.php" method="post" enctype="multipart/form-data">
                 <div class="profile-upload-container">
@@ -169,8 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="error-message"><?php echo $error; ?></div>
                 <?php endif; ?>
                 <?php if ($success): ?>
-                    <div class="success-message"
-                        style="color: green; background-color: #d4edda; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                    <div class="success-message">
                         <?php echo $success; ?>
                     </div>
                 <?php endif; ?>

@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once 'Components/db.php';
+require_once '../Components/db.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
@@ -22,6 +22,11 @@ $stmt->close();
 // Default profile image if none set
 if (empty($profile_image)) {
     $profile_image = 'https://via.placeholder.com/150'; // Or a local default asset
+} else {
+    // Adjust path for User directory
+    if (!filter_var($profile_image, FILTER_VALIDATE_URL)) {
+        $profile_image = '../' . $profile_image;
+    }
 }
 
 // Fetch Latest Sensor Reading
@@ -51,7 +56,7 @@ $mysqli->close();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -65,7 +70,7 @@ $mysqli->close();
         </div>
         <div class="user-profile">
             <div class="profile-img-container">
-                <?php if ($profile_image && file_exists($profile_image)): ?>
+                <?php if ($profile_image && (file_exists($profile_image) || filter_var($profile_image, FILTER_VALIDATE_URL))): ?>
                     <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile" class="profile-img">
                 <?php else: ?>
                     <i class="fas fa-user-circle profile-icon-placeholder"></i>
@@ -76,7 +81,7 @@ $mysqli->close();
             <?php if ($phone): ?>
                 <p class="user-phone"><?php echo htmlspecialchars($phone); ?></p>
             <?php endif; ?>
-            <a href="logout.php" class="logout-btn">Cerrar Sesion</a>
+            <a href="../logout.php" class="logout-btn">Cerrar Sesion</a>
         </div>
         <nav class="sidebar-nav">
             <ul>

@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['user_id'] = $id_usr;
                 $_SESSION['usr_type'] = $usr_type;
-                header("location: User_Dashboard.php"); // Redirect to dashboard or home
+                header("location: User/User_Dashboard.php"); // Redirect to dashboard or home
                 exit();
             } else {
                 $error = "Contraseña incorrecta.";

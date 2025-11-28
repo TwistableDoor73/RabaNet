@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once 'Components/db.php';
+require_once '../Components/db.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
@@ -28,16 +28,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Image Upload
         $profile_image_path = null;
         if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0) {
-            $target_dir = "uploads/";
+            $target_dir = "../uploads/";
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);
             }
-            $target_file = $target_dir . basename($_FILES["profile_image"]["name"]);
+            $file_name = basename($_FILES["profile_image"]["name"]);
+            $target_file_fs = $target_dir . $file_name;
+            $target_file_db = "uploads/" . $file_name; // Store relative to root
+
             $check = getimagesize($_FILES["profile_image"]["tmp_name"]);
 
             if ($check !== false) {
-                if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file)) {
-                    $profile_image_path = $target_file;
+                if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file_fs)) {
+                    $profile_image_path = $target_file_db;
                 } else {
                     $error = "Error al subir la imagen.";
                 }
@@ -94,6 +97,11 @@ $mysqli->close();
 // Default profile image
 if (empty($profile_image)) {
     $profile_image = 'https://via.placeholder.com/150'; // Or a local default asset
+} else {
+    // Adjust path for User directory
+    if (!filter_var($profile_image, FILTER_VALIDATE_URL)) {
+        $profile_image = '../' . $profile_image;
+    }
 }
 ?>
 
@@ -107,7 +115,7 @@ if (empty($profile_image)) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
@@ -120,7 +128,7 @@ if (empty($profile_image)) {
         </div>
         <div class="user-profile">
             <div class="profile-img-container">
-                <?php if ($profile_image && file_exists($profile_image)): ?>
+                <?php if ($profile_image && (file_exists($profile_image) || filter_var($profile_image, FILTER_VALIDATE_URL))): ?>
                     <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile" class="profile-img">
                 <?php else: ?>
                     <i class="fas fa-user-circle profile-icon-placeholder"></i>
@@ -131,7 +139,7 @@ if (empty($profile_image)) {
             <?php if ($phone): ?>
                 <p class="user-phone"><?php echo htmlspecialchars($phone); ?></p>
             <?php endif; ?>
-            <a href="logout.php" class="logout-btn">Cerrar Sesion</a>
+            <a href="../logout.php" class="logout-btn">Cerrar Sesion</a>
         </div>
         <nav class="sidebar-nav">
             <ul>
@@ -155,7 +163,7 @@ if (empty($profile_image)) {
                 <form action="User_Configuration.php" method="post" enctype="multipart/form-data">
                     <div class="profile-upload-container">
                         <label for="profile_image" class="profile-upload-label">
-                            <?php if ($profile_image && file_exists($profile_image)): ?>
+                            <?php if ($profile_image && (file_exists($profile_image) || filter_var($profile_image, FILTER_VALIDATE_URL))): ?>
                                 <img id="image-preview" class="preview-image"
                                     src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Preview"
                                     style="display: block;">

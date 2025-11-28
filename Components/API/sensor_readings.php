@@ -1,4 +1,5 @@
 <?php
+file_put_contents("log.txt", "RAW: " . file_get_contents("php://input") . "\n", FILE_APPEND);
 require_once "Components/db.php";
 header("Content-Type: application/json");
 

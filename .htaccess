@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# EXCEPCIÓN PARA NO FORZAR HTTPS EN Components/API
+RewriteCond %{REQUEST_URI} ^/Components/API/
+RewriteRule ^ - [L]
+
+# REDIRECCIÓN GENERAL A HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

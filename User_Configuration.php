@@ -121,15 +121,15 @@ if (empty($profile_image)) {
         <div class="user-profile">
             <div class="profile-img-container">
                 <?php if ($profile_image && file_exists($profile_image)): ?>
-                        <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile" class="profile-img">
+                    <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile" class="profile-img">
                 <?php else: ?>
-                        <i class="fas fa-user-circle profile-icon-placeholder"></i>
+                    <i class="fas fa-user-circle profile-icon-placeholder"></i>
                 <?php endif; ?>
             </div>
             <h3><?php echo htmlspecialchars($full_name); ?></h3>
             <p class="user-email"><?php echo htmlspecialchars($email); ?></p>
             <?php if ($phone): ?>
-                    <p class="user-phone"><?php echo htmlspecialchars($phone); ?></p>
+                <p class="user-phone"><?php echo htmlspecialchars($phone); ?></p>
             <?php endif; ?>
             <a href="logout.php" class="logout-btn">Cerrar Sesion</a>
         </div>
@@ -149,19 +149,24 @@ if (empty($profile_image)) {
         </header>
 
         <div class="configuration-container" style="max-width: 800px; margin: 0 auto; width: 100%;">
-            <div class="login-card" style="background-color: transparent; border: 2px solid white; color: white; max-width: 100%;">
-                
+            <div class="login-card"
+                style="background-color: transparent; border: 2px solid white; color: white; max-width: 100%;">
+
                 <form action="User_Configuration.php" method="post" enctype="multipart/form-data">
                     <div class="profile-upload-container">
                         <label for="profile_image" class="profile-upload-label">
                             <?php if ($profile_image && file_exists($profile_image)): ?>
-                                    <img id="image-preview" class="preview-image" src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Preview" style="display: block;">
-                                    <i class="fas fa-user-circle profile-upload-icon" id="upload-icon" style="display: none;"></i>
+                                <img id="image-preview" class="preview-image"
+                                    src="<?php echo htmlspecialchars($profile_image); ?>" alt="Profile Preview"
+                                    style="display: block;">
+                                <i class="fas fa-user-circle profile-upload-icon" id="upload-icon"
+                                    style="display: none;"></i>
                             <?php else: ?>
-                                    <i class="fas fa-user-circle profile-upload-icon" id="upload-icon" style="color: white;"></i>
-                                    <img id="image-preview" class="preview-image" src="#" alt="Profile Preview">
+                                <i class="fas fa-user-circle profile-upload-icon" id="upload-icon"
+                                    style="color: white;"></i>
+                                <img id="image-preview" class="preview-image" src="#" alt="Profile Preview">
                             <?php endif; ?>
-                            
+
                             <input type="file" id="profile_image" name="profile_image" class="profile-upload-input"
                                 accept="image/*" onchange="previewImage(this)">
                         </label>
@@ -172,15 +177,16 @@ if (empty($profile_image)) {
                     </div>
 
                     <?php if ($error): ?>
-                            <div class="error-message"><?php echo $error; ?></div>
+                        <div class="error-message"><?php echo $error; ?></div>
                     <?php endif; ?>
                     <?php if ($success): ?>
-                            <div class="success-message"><?php echo $success; ?></div>
+                        <div class="success-message"><?php echo $success; ?></div>
                     <?php endif; ?>
 
                     <div class="form-group">
                         <label for="full_name" style="color: white;">Nombre Completo</label>
-                        <input type="text" id="full_name" name="full_name" value="<?php echo htmlspecialchars($full_name); ?>" required>
+                        <input type="text" id="full_name" name="full_name"
+                            value="<?php echo htmlspecialchars($full_name); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="phone" style="color: white;">Numero de telefono</label>
@@ -188,14 +194,16 @@ if (empty($profile_image)) {
                     </div>
                     <div class="form-group">
                         <label for="email" style="color: white;">Correo electronico</label>
-                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+                        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>"
+                            required>
                     </div>
-                    
+
                     <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 30px 0;">
-                    
+
                     <div class="form-group">
                         <label for="password" style="color: white;">Nueva Contraseña (Opcional)</label>
-                        <input type="password" id="password" name="password" placeholder="Dejar en blanco para mantener la actual">
+                        <input type="password" id="password" name="password"
+                            placeholder="Dejar en blanco para mantener la actual">
                     </div>
                     <div class="form-group">
                         <label for="confirm_password" style="color: white;">Confirmar Contraseña</label>
@@ -217,7 +225,7 @@ if (empty($profile_image)) {
                     document.getElementById('image-preview').src = e.target.result;
                     document.getElementById('image-preview').style.display = 'block';
                     var icon = document.getElementById('upload-icon');
-                    if(icon) icon.style.display = 'none';
+                    if (icon) icon.style.display = 'none';
                 }
                 reader.readAsDataURL(input.files[0]);
             }

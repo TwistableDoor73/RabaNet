@@ -1,12 +1,9 @@
 <?php
-session_start();
-require_once '../Components/db.php';
+require_once '../Components/AuthMiddleware.php';
+$user = checkAuth(1); // Verify JWT and Admin access
+$admin_id = $user['user_id'];
 
-// Check Admin
-if (!isset($_SESSION['user_id']) || $_SESSION['usr_type'] != 1) {
-    header("Location: ../login.php");
-    exit();
-}
+require_once '../Components/db.php';
 
 $mysqli = connectDatabase();
 $error = '';

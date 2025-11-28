@@ -1,12 +1,9 @@
 <?php
-session_start();
-require_once '../Components/db.php';
+require_once '../Components/AuthMiddleware.php';
+$user = checkAuth(1); // Verify JWT and Admin access
+$admin_id = $user['user_id'];
 
-// Check Admin
-if (!isset($_SESSION['user_id']) || $_SESSION['usr_type'] != 1) {
-    header("Location: ../login.php");
-    exit();
-}
+require_once '../Components/db.php';
 
 $mysqli = connectDatabase();
 $error = '';
@@ -19,6 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $usr_type = $_POST['usr_type'];
     $password = $_POST['password'];
+
+    // Password Validation
+    if (strlen($password) <= 8 || !preg_match('/[0-9]/', $password) || !preg_match('/[\W_]/', $password)) {
+        $error = "La contraseña debe tener más de 8 caracteres, incluir al menos un número y un carácter especial.";
+    }
 
     // Check Email
     $stmt = $mysqli->prepare("SELECT id_usr FROM users WHERE email = ?");

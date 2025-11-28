@@ -11,6 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
 
     $password = $_POST['password'];
+
+    // Password Validation
+    if (strlen($password) <= 8 || !preg_match('/[0-9]/', $password) || !preg_match('/[\W_]/', $password)) {
+        $error = "La contraseña debe tener más de 8 caracteres, incluir al menos un número y un carácter especial.";
+    }
+
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $usr_type = 2; // Default user
     $status = 1; // Default active

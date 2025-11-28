@@ -1,15 +1,10 @@
 <?php
-session_start();
+require_once '../Components/AuthMiddleware.php';
+$user = checkAuth(); // Verify JWT
+$user_id = $user['user_id'];
+
 require_once '../Components/db.php';
-
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
-    exit();
-}
-
 $mysqli = connectDatabase();
-$user_id = $_SESSION['user_id'];
 $error = '';
 $success = '';
 
@@ -24,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validation
     if (!empty($new_password) && $new_password !== $confirm_password) {
         $error = "Las contraseñas no coinciden.";
+    } elseif (!empty($new_password) && (strlen($new_password) <= 8 || !preg_match('/[0-9]/', $new_password) || !preg_match('/[\W_]/', $new_password))) {
+        $error = "La contraseña debe tener más de 8 caracteres, incluir al menos un número y un carácter especial.";
     } else {
         // Image Upload
         $profile_image_path = null;

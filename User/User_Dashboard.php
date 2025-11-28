@@ -1,15 +1,11 @@
 <?php
 session_start();
 require_once '../Components/db.php';
-
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login.php");
-    exit();
-}
+require_once '../Components/AuthMiddleware.php';
+$user = checkAuth(); // Verify JWT
+$user_id = $user['user_id'];
 
 $mysqli = connectDatabase();
-$user_id = $_SESSION['user_id'];
 
 // Fetch User Data
 $stmt = $mysqli->prepare("SELECT full_name, email, phone, profile_image FROM users WHERE id_usr = ?");

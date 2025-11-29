@@ -126,6 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="login-btn">Iniciar Sesión</button>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <a href="register.php" class="login-btn" style="background: transparent; border: 1px solid white; display: block; text-decoration: none; text-align: center;">Registrarse</a>
+                </div>
             </form>
         </div>
     </div>

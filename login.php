@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="login-body">
     <div class="login-header">
-        <h1>RabaNet</h1>
+        <h1><a href="index.html" style="text-decoration: none; color: white;">RabaNet</a></h1>
     </div>
 
     <div class="login-container">
@@ -126,9 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="login-btn">Iniciar Sesión</button>
-                
+
                 <div style="margin-top: 15px; text-align: center; color: white; font-size: 14px;">
-                    ¿No tienes una cuenta? <a href="register.php" style="color: white; text-decoration: underline; font-weight: bold;">Regístrate aquí</a>
+                    ¿No tienes una cuenta? <a href="register.php"
+                        style="color: white; text-decoration: underline; font-weight: bold;">Regístrate aquí</a>
                 </div>
             </form>
         </div>

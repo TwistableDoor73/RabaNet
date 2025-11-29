@@ -127,8 +127,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <button type="submit" class="login-btn">Iniciar Sesión</button>
                 
-                <div style="margin-top: 20px; text-align: center;">
-                    <a href="register.php" class="login-btn" style="background: transparent; border: 1px solid white; display: block; text-decoration: none; text-align: center;">Registrarse</a>
+                <div style="margin-top: 15px; text-align: center; color: white; font-size: 14px;">
+                    ¿No tienes una cuenta? <a href="register.php" style="color: white; text-decoration: underline; font-weight: bold;">Regístrate aquí</a>
                 </div>
             </form>
         </div>
